@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block content %}
+
+    <p style="text-align: center; font-weight: bold; font-size: 40px;">Blog List</p>
+    <form action='/blog' method='POST'>
+
+    <ul style="list-style-type: none;">
+        {% for blog in blogs %}
+       
+            <li><a style="font-size: 30px;" href='/display?id={{blog.id}}'>{{blog.title}}</a>
+            <br><br>       
+            {{blog.body}}
+            <br><br>
+
+            {% for user in users %}
+            <a style="font-size: 14px;">written by: {{user.username}}</a>
+            {% endfor %}
+
+        </li>
+        <hr />
+        {% endfor %}
+    </ul>
+
+    </form>
+
+
+{% endblock %}

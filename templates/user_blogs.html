@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+
+    
+    <ul style="list-style-type: none;">
+        {% for blog in blogs %}
+        <li><h1>{{blog.title}}</h1>
+        <a style="font-size: 18px;">{{blog.body}}</a>
+            <br><br>
+
+            {% for user in users %}
+            <a style="font-size: 14px;">written by: {{user.username}}</a>
+            {% endfor %}
+
+        </li>
+        <hr>
+        {% endfor %}
+    </ul>
+
+    
+{% endblock %}

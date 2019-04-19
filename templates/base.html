@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{{title}}</title>
+        <style>
+            .error { color: red};
+        </style>
+    </head>
+<body>
+
+    <nav style="float: left; font-size: 18px;">
+        <a href='/'>Home Page | </a>
+        <a href='/blog'>All Blog Posts | </a>
+        <a href='/newpost'>Add a New Blog</a>
+    </nav>
+    <nav style="float: right; font-size: 18px;">
+        {% if 'username' in session %}
+        {{ session['username'] }} <br>
+            <a href="logout">Log Out</a>
+        {% else %}
+            <a href="login">Login</a> | <a href="signup">Signup</a>
+        {% endif %}
+    </nav>
+
+    <br><br>
+    {% with messages = get_flashed_messages(with_categories=True) %}
+        <ul>
+            {% for category,message in messages %}
+               <li class = "{{category}}"><h3>{{message}}</h3></li> 
+               {% endfor %}
+        </ul>
+    {% endwith %}
+
+    <br><br><br>
+
+    {% block content %}
+    {% endblock %}
+
+</body>
+</html>
