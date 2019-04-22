@@ -108,9 +108,10 @@ def logout():
 def blog_list(): 
     
     blogs = Blog.query.all()
+    users = User.query.all()
 
     return render_template('blog_list.html', 
-        blogs = blogs) 
+        blogs = blogs, users = users) 
 
 
 @app.route('/', methods=['POST', 'GET'])
@@ -137,7 +138,8 @@ def add_blog():
             db.session.commit()
 
             blogs = Blog.query.filter_by(id = new_blog.id, owner=owner).all()
-            return render_template('display.html', blogs = blogs)
+            users = User.query.all()
+            return render_template('display.html', blogs = blogs, users = users)
         
         else: 
             flash("Blog post cannot be empty", 'error')
@@ -150,9 +152,9 @@ def display():
     id = int(blog_id)
 
     blogs = Blog.query.filter_by(id = id).all()
-    #users = Blog.query.filter_by(owner_id = id).all()
+    users = User.query.all()
 
-    return render_template('display.html', blogs = blogs)
+    return render_template('display.html', blogs = blogs, users = users)
 
 
 @app.route('/user_blogs', methods = ['GET'])

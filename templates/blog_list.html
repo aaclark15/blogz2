@@ -13,9 +13,11 @@
             <br><br>
 
             {% for user in users %}
-            <a style="font-size: 14px;">written by: {{user.username}}</a>
+                {% if user.id == blog.owner_id %}
+                <a style="font-size: 14px;">written by: </a>
+                <a style="font-size: 14px;" href='user_blogs?id={{user.id}}'>{{user.username}}</a>
+                {% endif %}
             {% endfor %}
-
         </li>
         <hr />
         {% endfor %}
